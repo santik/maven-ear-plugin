@@ -81,4 +81,16 @@ class EARIT {
         .containsOnlyOnce("META-INF/application.xml", "APP-INF/classes/foo.properties");
   }
 
+  @MavenTest
+  @DisplayName("JBoss app generation in EAR file.")
+  void jboss(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
+    assertThat(result).isSuccessful();
+    assertThat(log).isSuccessful();
+    assertThat(project).hasTarget()
+        .withEarFile()
+        .containsOnlyOnce("META-INF/application.xml",
+            "META-INF/appserver-application.xml",
+            "META-INF/jboss-app.xml");
+  }
+
 }
