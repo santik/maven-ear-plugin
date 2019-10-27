@@ -29,9 +29,6 @@ import org.apache.maven.jupiter.extension.maven.MavenProjectResult;
 import org.junit.jupiter.api.DisplayName;
 
 /**
- * Examples taken from Maven EAR Plugin
- *
- * Invoker Integration Test:
  * <ul>
  *   <li>basic</li>
  *   <li>packaging_includes</li>
