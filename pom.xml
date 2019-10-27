@@ -83,7 +83,7 @@
     <mavenArchiverVersion>3.2.0</mavenArchiverVersion>
     <mavenFilteringVersion>3.1.1</mavenFilteringVersion>
     <mavenVersion>3.0</mavenVersion>
-    <javaVersion>7</javaVersion>
+    <javaVersion>8</javaVersion>
     <surefire.version>2.22.1</surefire.version>
     <project.build.outputTimestamp>2020-04-07T21:04:00Z</project.build.outputTimestamp>
   </properties>
@@ -164,6 +164,12 @@
       <version>1.9.5</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.maven.jupiter.extension</groupId>
+      <artifactId>maven-it-extension</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -218,10 +224,6 @@
 
     <profile>
       <id>run-its</id>
-      <properties>
-        <localRepositoryPath>${project.build.testOutputDirectory}/m2repo</localRepositoryPath>
-        <localSnapshotRepositoryPath>${project.build.testOutputDirectory}/m2snapshots</localSnapshotRepositoryPath>
-      </properties>
       <build>
         <resources>
           <resource>
@@ -265,13 +267,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-invoker-plugin</artifactId>
             <configuration>
-              <streamLogs>true</streamLogs>
-              <!-- NOTE: Must be synced with the repo path used by AbstractEarPluginIT -->
-              <localRepositoryPath>${localRepositoryPath}</localRepositoryPath>
-              <goals>
-                <goal>clean</goal>
-                <goal>package</goal>
-              </goals>
+              <localRepositoryPath>${project.build.directory}/invoker-repo</localRepositoryPath>
               <extraArtifacts>
                 <extraArtifact>org.apache.maven.plugins:maven-war-plugin:2.1.1:jar</extraArtifact>
                 <extraArtifact>org.apache.maven.plugins:maven-compiler-plugin:2.5.1:jar</extraArtifact>
@@ -282,21 +278,16 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+              <forkCount>1</forkCount>
+              <reuseForks>false</reuseForks>
+            </configuration>
             <executions>
               <execution>
                 <goals>
                   <goal>integration-test</goal>
                   <goal>verify</goal>
                 </goals>
-                <configuration>
-                  <systemPropertyVariables combine.children="append">
-                    <maven.home>${maven.home}</maven.home>
-                    <userlocalRepository>${settings.localRepository}</userlocalRepository>
-                    <localRepositoryPath>${localRepositoryPath}</localRepositoryPath>
-                    <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
-                    <basedirectory>${basedir}</basedirectory>
-                  </systemPropertyVariables>
-                </configuration>
               </execution>
             </executions>
           </plugin>
