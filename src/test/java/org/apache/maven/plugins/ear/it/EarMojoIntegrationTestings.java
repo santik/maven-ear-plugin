@@ -34,7 +34,7 @@ import org.codehaus.plexus.util.ReaderFactory;
  */
 //FIXME: Currently disabled based on the name
 public class EarMojoIntegrationTestings
-    extends AbstractEarPluginIT
+    extends AbstractEarPluginIntegrationTesting
 {
 
     /**
