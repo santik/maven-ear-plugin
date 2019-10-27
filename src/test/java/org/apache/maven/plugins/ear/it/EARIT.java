@@ -26,10 +26,27 @@ import org.apache.maven.jupiter.extension.MavenTest;
 import org.apache.maven.jupiter.extension.maven.MavenExecutionResult;
 import org.apache.maven.jupiter.extension.maven.MavenLog;
 import org.apache.maven.jupiter.extension.maven.MavenProjectResult;
+import org.junit.jupiter.api.DisplayName;
 
+/**
+ * Examples taken from Maven EAR Plugin
+ *
+ * Invoker Integration Test:
+ * <ul>
+ *   <li>basic</li>
+ *   <li>packaging_includes</li>
+ *   <li>packaging_excludes</li>
+ *   <li>resource_custom_directory</li>
+ * </ul>
+ *
+ * @author Karl Heinz Marbaise
+ */
 @MavenIT
+@DisplayName("EAR Plugin Integration tests")
 class EARIT {
+
   @MavenTest
+  @DisplayName("Basic configuration. Should simply create an ear file.")
   void basic(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
@@ -38,6 +55,7 @@ class EARIT {
   }
 
   @MavenTest
+  @DisplayName("Packging includes defined.")
   void packaging_includes(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
@@ -47,6 +65,7 @@ class EARIT {
   }
 
   @MavenTest
+  @DisplayName("Packging excludes defined to prevent adding commons-lang-2.5 into the ear file.")
   void packaging_excludes(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
@@ -56,6 +75,7 @@ class EARIT {
   }
 
   @MavenTest
+  @DisplayName("Filtering of a custom directory (likely wrong!)")
   void resource_custom_directory(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
     assertThat(result).isSuccessful();
     assertThat(log).isSuccessful();
