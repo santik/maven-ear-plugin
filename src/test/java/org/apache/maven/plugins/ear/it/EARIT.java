@@ -46,10 +46,9 @@ import org.junit.jupiter.api.DisplayName;
 class EARIT {
 
   @MavenTest
-  @DisabledForMaven(versions = M3_6_2)
+  @DisabledForMaven(M3_6_2)
   @DisplayName("Basic configuration. Should simply create an ear file.")
   void basic(MavenExecutionResult result, MavenProjectResult project) {
-    System.out.println("System.getProperty(\"maven.version\") = " + System.getProperty("maven.version"));
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
         .withEarFile()
