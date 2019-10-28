@@ -347,8 +347,12 @@
               <includes>
                 <include>**/*IT.java</include>
               </includes>
+              <!--
+               ! currently needed for running integration tests.
+              -->
               <systemProperties>
                 <maven.version>${maven.version}</maven.version>
+                <maven.home>${maven.home}</maven.home>
               </systemProperties>
             </configuration>
             <executions>

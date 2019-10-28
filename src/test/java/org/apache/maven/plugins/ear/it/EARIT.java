@@ -20,12 +20,15 @@ package org.apache.maven.plugins.ear.it;
  */
 
 import static org.apache.maven.jupiter.assertj.MavenITAssertions.assertThat;
+import static org.apache.maven.jupiter.extension.maven.MavenVersion.M3_6_2;
 
+import org.apache.maven.jupiter.extension.DisabledForMaven;
 import org.apache.maven.jupiter.extension.MavenIT;
 import org.apache.maven.jupiter.extension.MavenTest;
 import org.apache.maven.jupiter.extension.maven.MavenExecutionResult;
 import org.apache.maven.jupiter.extension.maven.MavenLog;
 import org.apache.maven.jupiter.extension.maven.MavenProjectResult;
+import org.apache.maven.jupiter.extension.maven.MavenVersion;
 import org.junit.jupiter.api.DisplayName;
 
 /**
@@ -43,6 +46,7 @@ import org.junit.jupiter.api.DisplayName;
 class EARIT {
 
   @MavenTest
+  @DisabledForMaven(versions = M3_6_2)
   @DisplayName("Basic configuration. Should simply create an ear file.")
   void basic(MavenExecutionResult result, MavenProjectResult project) {
     System.out.println("System.getProperty(\"maven.version\") = " + System.getProperty("maven.version"));
