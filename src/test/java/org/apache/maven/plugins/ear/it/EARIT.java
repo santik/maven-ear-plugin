@@ -45,6 +45,7 @@ class EARIT {
   @MavenTest
   @DisplayName("Basic configuration. Should simply create an ear file.")
   void basic(MavenExecutionResult result, MavenProjectResult project) {
+    System.out.println("System.getProperty(\"maven.version\") = " + System.getProperty("maven.version"));
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
         .withEarFile()
