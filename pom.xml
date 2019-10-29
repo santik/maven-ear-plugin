@@ -342,8 +342,8 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
             <configuration>
-              <forkCount>1</forkCount>
-              <reuseForks>false</reuseForks>
+              <forkCount>5</forkCount>
+              <reuseForks>true</reuseForks>
               <includes>
                 <include>**/*IT.java</include>
               </includes>
@@ -354,6 +354,12 @@
                 <maven.version>${maven.version}</maven.version>
                 <maven.home>${maven.home}</maven.home>
               </systemProperties>
+              <properties>
+                <configurationParameters>
+                  junit.jupiter.execution.parallel.enabled = true
+                  junit.jupiter.execution.parallel.mode.default = concurrent
+                </configurationParameters>
+              </properties>
             </configuration>
             <executions>
               <execution>

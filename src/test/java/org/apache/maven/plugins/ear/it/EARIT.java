@@ -28,7 +28,6 @@ import org.apache.maven.jupiter.extension.MavenTest;
 import org.apache.maven.jupiter.extension.maven.MavenExecutionResult;
 import org.apache.maven.jupiter.extension.maven.MavenLog;
 import org.apache.maven.jupiter.extension.maven.MavenProjectResult;
-import org.apache.maven.jupiter.extension.maven.MavenVersion;
 import org.junit.jupiter.api.DisplayName;
 
 /**
