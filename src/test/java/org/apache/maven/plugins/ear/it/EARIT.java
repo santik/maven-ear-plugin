@@ -40,6 +40,8 @@ import org.junit.jupiter.api.DisplayName;
  * </ul>
  *
  * @author Karl Heinz Marbaise
+ * These are the maven-invoker-plugin integration tests (src/it/**).
+ * migrated to the new maven-it-extension
  */
 @MavenIT
 @DisplayName("EAR Plugin Integration tests")
