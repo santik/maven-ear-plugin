@@ -93,9 +93,18 @@ class EARIT {
     assertThat(log).isSuccessful();
     assertThat(project).hasTarget()
         .withEarFile()
-        .containsOnlyOnce("META-INF/application.xml",
+        .containsOnly("META-INF/application.xml",
             "META-INF/appserver-application.xml",
             "META-INF/jboss-app.xml");
+  }
+  @MavenTest
+  @DisplayName("Transitive excludes")
+  void transitive_excludes(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
+    assertThat(result).isSuccessful();
+    assertThat(log).isSuccessful();
+    assertThat(project).hasTarget()
+        .withEarFile()
+        .containsOnly("org.apache.maven-maven-core-3.0.jar");
   }
 
 }
