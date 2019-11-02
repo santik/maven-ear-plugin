@@ -269,20 +269,20 @@
         <testResources>
           <testResource>
             <directory>src/test/resources</directory>
-            <filtering>true</filtering>
-            <includes>
-              <include>**/pom.xml</include>
-            </includes>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources</directory>
             <filtering>false</filtering>
             <excludes>
               <exclude>**/pom.xml</exclude>
             </excludes>
           </testResource>
           <testResource>
-            <directory>src/test/filtered-resources</directory>
+            <directory>src/test/resources-its</directory>
+            <filtering>true</filtering>
+            <includes>
+              <include>**/pom.xml</include>
+            </includes>
+          </testResource>
+          <testResource>
+            <directory>src/test/resources-its</directory>
             <filtering>true</filtering>
           </testResource>
         </testResources>
