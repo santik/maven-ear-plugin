@@ -20,9 +20,7 @@ package org.apache.maven.plugins.ear.it;
  */
 
 import static org.apache.maven.jupiter.assertj.MavenITAssertions.assertThat;
-import static org.apache.maven.jupiter.extension.maven.MavenVersion.M3_6_2;
 
-import org.apache.maven.jupiter.extension.DisabledForMaven;
 import org.apache.maven.jupiter.extension.MavenIT;
 import org.apache.maven.jupiter.extension.MavenTest;
 import org.apache.maven.jupiter.extension.maven.MavenExecutionResult;
@@ -38,16 +36,14 @@ import org.junit.jupiter.api.DisplayName;
  *   <li>resource_custom_directory</li>
  * </ul>
  *
- * @author Karl Heinz Marbaise
- * These are the maven-invoker-plugin integration tests (src/it/**).
- * migrated to the new maven-it-extension
+ * @author Karl Heinz Marbaise These are the maven-invoker-plugin integration tests (src/it/**). migrated to the new
+ * maven-it-extension
  */
 @MavenIT
 @DisplayName("EAR Plugin Integration tests")
 class EARIT {
 
   @MavenTest
-  @DisabledForMaven(M3_6_2)
   @DisplayName("Basic configuration. Should simply create an ear file.")
   void basic(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
@@ -56,14 +52,27 @@ class EARIT {
         .containsOnlyOnce("META-INF/application.xml", "META-INF/appserver-application.xml");
   }
 
+  /*
+Archive:  test-1.0.ear
+  testing: META-INF/MANIFEST.MF     OK
+  testing: META-INF/                OK
+  testing: META-INF/maven/          OK
+  testing: META-INF/maven/org.apache.maven.its.ear.jboss/   OK
+  testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/   OK
+  testing: META-INF/application.xml   OK
+  testing: META-INF/jboss-app.xml   OK
+  testing: META-INF/appserver-application.xml   OK
+  testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.xml   OK
+  testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.properties   OK
+ */
   @MavenTest
-  @DisplayName("Packging includes defined.")
-  void packaging_includes(MavenExecutionResult result, MavenProjectResult project) {
+  @DisplayName("JBoss app generation in EAR file.")
+  void jboss(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
     assertThat(result).isSuccessful();
+    assertThat(log).isSuccessful();
     assertThat(project).hasTarget()
         .withEarFile()
-        .doesNotContain("commons-io-1.4.jar")
-        .containsOnlyOnce("commons-lang-commons-lang-2.5.jar", "META-INF/application.xml", "META-INF/MANIFEST.MF");
+        .containsOnlyOnce("META-INF/application.xml", "META-INF/appserver-application.xml", "META-INF/jboss-app.xml");
   }
 
   @MavenTest
@@ -77,6 +86,16 @@ class EARIT {
   }
 
   @MavenTest
+  @DisplayName("Packging includes defined.")
+  void packaging_includes(MavenExecutionResult result, MavenProjectResult project) {
+    assertThat(result).isSuccessful();
+    assertThat(project).hasTarget()
+        .withEarFile()
+        .doesNotContain("commons-io-1.4.jar")
+        .containsOnlyOnce("commons-lang-commons-lang-2.5.jar", "META-INF/application.xml", "META-INF/MANIFEST.MF");
+  }
+
+  @MavenTest
   @DisplayName("Filtering of a custom directory (likely wrong!)")
   void resource_custom_directory(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
     assertThat(result).isSuccessful();
@@ -86,30 +105,6 @@ class EARIT {
         .containsOnlyOnce("META-INF/application.xml", "APP-INF/classes/foo.properties");
   }
 
-  /*
-  Archive:  test-1.0.ear
-    testing: META-INF/MANIFEST.MF     OK
-    testing: META-INF/                OK
-    testing: META-INF/maven/          OK
-    testing: META-INF/maven/org.apache.maven.its.ear.jboss/   OK
-    testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/   OK
-    testing: META-INF/application.xml   OK
-    testing: META-INF/jboss-app.xml   OK
-    testing: META-INF/appserver-application.xml   OK
-    testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.xml   OK
-    testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.properties   OK
-   */
-  @MavenTest
-  @DisplayName("JBoss app generation in EAR file.")
-  void jboss(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
-    assertThat(result).isSuccessful();
-    assertThat(log).isSuccessful();
-    assertThat(project).hasTarget()
-        .withEarFile()
-        .containsOnlyOnce("META-INF/application.xml",
-            "META-INF/appserver-application.xml",
-            "META-INF/jboss-app.xml");
-  }
   @MavenTest
   @DisplayName("Transitive excludes")
   void transitive_excludes(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
