@@ -27,6 +27,8 @@ import org.apache.maven.jupiter.extension.maven.MavenExecutionResult;
 import org.apache.maven.jupiter.extension.maven.MavenLog;
 import org.apache.maven.jupiter.extension.maven.MavenProjectResult;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 
 /**
  * <ul>
@@ -40,11 +42,11 @@ import org.junit.jupiter.api.DisplayName;
  * maven-it-extension
  */
 @MavenIT
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName("EAR Plugin Integration tests")
 class EARIT {
 
   @MavenTest
-  @DisplayName("Basic configuration. Should simply create an ear file.")
   void basic(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
@@ -66,7 +68,6 @@ Archive:  test-1.0.ear
   testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.properties   OK
  */
   @MavenTest
-  @DisplayName("JBoss app generation in EAR file.")
   void jboss(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
     assertThat(result).isSuccessful();
     assertThat(log).isSuccessful();
@@ -76,7 +77,6 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
-  @DisplayName("Packging excludes defined to prevent adding commons-lang-2.5 into the ear file.")
   void packaging_excludes(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
@@ -86,7 +86,6 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
-  @DisplayName("Packging includes defined.")
   void packaging_includes(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
@@ -106,7 +105,26 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
-  @DisplayName("Transitive excludes")
+  void skinny_wars_filenamemapping_no_version(MavenExecutionResult result) {
+    assertThat(result).isSuccessful();
+    assertThat(result).project().hasModule("war-module");
+    //FIXME: The following checking is not correct:
+    //File jarFile = new File( basedir, "ear-module/target/ear-module-1.0/war-module.war" );
+    assertThat(result).project()
+        .withModule("war-module")
+        .withWarFile()
+        .containsOnlyOnce("WEB-INF/web.xml", "META-INF/MANIFEST.MF");
+        //FIXME: Check if the following works correctly: .doesNotContain("WEB-INF/lib/commons-lang-2.5.jar");
+
+    assertThat(result).project()
+        .withModule("war-module")
+        .withWarFile()
+        .containsOnlyOnce("WEB-INF/web.xml", "META-INF/MANIFEST.MF", "WEB-INF/lib/commons-lang-2.5.jar");
+
+    assertThat(result).project().withModule(  "ear-module").withEarFile();
+  }
+
+  @MavenTest
   void transitive_excludes(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
     assertThat(result).isSuccessful();
     assertThat(log).isSuccessful();
