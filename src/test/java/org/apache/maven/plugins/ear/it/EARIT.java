@@ -86,6 +86,19 @@ class EARIT {
         .containsOnlyOnce("META-INF/application.xml", "APP-INF/classes/foo.properties");
   }
 
+  /*
+  Archive:  test-1.0.ear
+    testing: META-INF/MANIFEST.MF     OK
+    testing: META-INF/                OK
+    testing: META-INF/maven/          OK
+    testing: META-INF/maven/org.apache.maven.its.ear.jboss/   OK
+    testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/   OK
+    testing: META-INF/application.xml   OK
+    testing: META-INF/jboss-app.xml   OK
+    testing: META-INF/appserver-application.xml   OK
+    testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.xml   OK
+    testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.properties   OK
+   */
   @MavenTest
   @DisplayName("JBoss app generation in EAR file.")
   void jboss(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
@@ -93,7 +106,7 @@ class EARIT {
     assertThat(log).isSuccessful();
     assertThat(project).hasTarget()
         .withEarFile()
-        .containsOnly("META-INF/application.xml",
+        .containsOnlyOnce("META-INF/application.xml",
             "META-INF/appserver-application.xml",
             "META-INF/jboss-app.xml");
   }
@@ -104,7 +117,7 @@ class EARIT {
     assertThat(log).isSuccessful();
     assertThat(project).hasTarget()
         .withEarFile()
-        .containsOnly("org.apache.maven-maven-core-3.0.jar");
+        .containsOnlyOnce("org.apache.maven-maven-core-3.0.jar", "META-INF/application.xml");
   }
 
 }
