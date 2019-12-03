@@ -26,6 +26,7 @@ import org.apache.maven.jupiter.extension.MavenTest;
 import org.apache.maven.jupiter.extension.maven.MavenExecutionResult;
 import org.apache.maven.jupiter.extension.maven.MavenLog;
 import org.apache.maven.jupiter.extension.maven.MavenProjectResult;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -126,6 +127,7 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
+  @Disabled
   void same_artifactId(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
     assertThat(result).isSuccessful();
     assertThat(log).isSuccessful();
@@ -190,6 +192,7 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
+  @Disabled
   void skinny_wars_timestamp(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasModule("war-module");
