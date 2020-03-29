@@ -19,17 +19,18 @@ package org.apache.maven.plugins.ear.it;
  * under the License.
  */
 
-import static org.apache.maven.jupiter.assertj.MavenITAssertions.assertThat;
-
+import org.apache.maven.assertj.MavenITAssertions;
 import org.apache.maven.jupiter.extension.MavenIT;
 import org.apache.maven.jupiter.extension.MavenTest;
-import org.apache.maven.jupiter.extension.maven.MavenExecutionResult;
-import org.apache.maven.jupiter.extension.maven.MavenLog;
-import org.apache.maven.jupiter.extension.maven.MavenProjectResult;
+import org.apache.maven.jupiter.maven.MavenExecutionResult;
+import org.apache.maven.jupiter.maven.MavenLog;
+import org.apache.maven.jupiter.maven.MavenProjectResult;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+
+import static org.apache.maven.assertj.MavenITAssertions.assertThat;
 
 /**
  * <ul>
@@ -45,11 +46,11 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 @MavenIT
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName("EAR Plugin Integration tests")
-class EARMIT
+class EARIT
 {
 
   @MavenTest
-  void basic(MavenExecutionResult result, MavenProjectResult project) {
+  void basic( MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasTarget()
         .withEarFile()

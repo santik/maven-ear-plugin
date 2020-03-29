@@ -23,8 +23,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>maven-plugins</artifactId>
     <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-plugins</artifactId>
     <version>34</version>
     <relativePath>../../pom/maven/maven-plugins/pom.xml</relativePath>
   </parent>
@@ -93,7 +93,7 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.5.2</version>
+        <version>5.6.1</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -150,7 +150,7 @@
       <artifactId>maven-mapping</artifactId>
       <version>3.0.0</version>
     </dependency>
-    
+
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>maven-verifier</artifactId>
@@ -174,7 +174,13 @@
      -->
     <dependency>
       <groupId>org.apache.maven.jupiter.extension</groupId>
-      <artifactId>maven-it-extension</artifactId>
+      <artifactId>maven-jupiter-extension</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.jupiter.extension</groupId>
+      <artifactId>maven-it-assertions</artifactId>
       <version>0.1.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
@@ -325,7 +331,7 @@
               </execution>
               <execution>
                 <id>install-artifacts</id>
-                <phase>EMPTY</phase>
+<!--                <phase>EMPTY</phase>-->
                 <goals>
                   <goal>install</goal>
                 </goals>
@@ -339,7 +345,6 @@
               </execution>
             </executions>
           </plugin>
-<!--
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
@@ -369,7 +374,7 @@
               </execution>
             </executions>
           </plugin>
-
+<!--
           <plugin>
             <groupId>de.sormuras.junit</groupId>
             <artifactId>junit-platform-maven-plugin</artifactId>
@@ -386,20 +391,21 @@
           </plugin>
 -->
           <plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-  					<artifactId>maven-ngi-plugin</artifactId>
-						<version>0.1.0-SNAPSHOT</version>
-            <configuration>
-            </configuration>
-            <executions>
-							<execution>
-                <goals>
-                  <goal>install</goal>
-                  <goal>integration-test</goal>
-                </goals>
-							</execution>
-						</executions>
-					</plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ngi-plugin</artifactId>
+					<version>0.1.0-SNAPSHOT</version>
+          <configuration>
+          </configuration>
+          <executions>
+						<execution>
+							<id>execution-first</id>
+              <goals>
+                <goal>install</goal>
+                <goal>integration-test</goal>
+              </goals>
+						</execution>
+					</executions>
+				</plugin>
         </plugins>
       </build>
     </profile>
