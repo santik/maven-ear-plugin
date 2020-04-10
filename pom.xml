@@ -331,7 +331,7 @@
               </execution>
               <execution>
                 <id>install-artifacts</id>
-<!--                <phase>EMPTY</phase>-->
+<!--                <phase>EMPTY</phase> -->
                 <goals>
                   <goal>install</goal>
                 </goals>
@@ -345,7 +345,6 @@
               </execution>
             </executions>
           </plugin>
-<!--
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
@@ -375,7 +374,6 @@
               </execution>
             </executions>
           </plugin>
--->
 <!--
           <plugin>
             <groupId>de.sormuras.junit</groupId>
@@ -402,7 +400,7 @@
 						<execution>
 							<id>execution-first</id>
               <goals>
-                <goal>install</goal>
+<!--                <goal>install</goal> -->
                 <goal>integration-test</goal>
               </goals>
 						</execution>
