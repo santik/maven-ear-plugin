@@ -19,7 +19,6 @@ package org.apache.maven.plugins.ear.it;
  * under the License.
  */
 
-import org.apache.maven.assertj.MavenITAssertions;
 import org.apache.maven.jupiter.extension.MavenIT;
 import org.apache.maven.jupiter.extension.MavenTest;
 import org.apache.maven.jupiter.maven.MavenExecutionResult;
