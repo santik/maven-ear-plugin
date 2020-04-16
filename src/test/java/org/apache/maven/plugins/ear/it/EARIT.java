@@ -19,17 +19,18 @@ package org.apache.maven.plugins.ear.it;
  * under the License.
  */
 
-import org.apache.maven.jupiter.extension.MavenIT;
-import org.apache.maven.jupiter.extension.MavenTest;
-import org.apache.maven.jupiter.maven.MavenExecutionResult;
-import org.apache.maven.jupiter.maven.MavenLog;
-import org.apache.maven.jupiter.maven.MavenProjectResult;
+import static com.soebes.itf.extension.assertj.MavenITAssertions.assertThat;
+
+import com.soebes.itf.jupiter.extension.MavenIT;
+import com.soebes.itf.jupiter.extension.MavenTest;
+import com.soebes.itf.jupiter.maven.MavenExecutionResult;
+import com.soebes.itf.jupiter.maven.MavenLog;
+import com.soebes.itf.jupiter.maven.MavenProjectResult;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 
-import static org.apache.maven.assertj.MavenITAssertions.assertThat;
 
 /**
  * <ul>
