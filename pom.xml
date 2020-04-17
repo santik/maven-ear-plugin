@@ -19,7 +19,9 @@
   under the License.
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -42,7 +44,8 @@
 
   <scm>
     <connection>scm:git:https://gitbox.apache.org/repos/asf/maven-ear-plugin.git</connection>
-    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/maven-ear-plugin.git</developerConnection>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/maven-ear-plugin.git
+    </developerConnection>
     <url>https://github.com/apache/maven-ear-plugin/tree/${project.scm.tag}</url>
     <tag>HEAD</tag>
   </scm>
@@ -57,7 +60,8 @@
   <distributionManagement>
     <site>
       <id>apache.website</id>
-      <url>scm:svn:https://svn.apache.org/repos/asf/maven/website/components/${maven.site.path}</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/maven/website/components/${maven.site.path}
+      </url>
     </site>
   </distributionManagement>
 
@@ -166,7 +170,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12 </version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     <!--
@@ -222,14 +226,18 @@
               <!--
                 ! The manifest specification does not describe any method for writing comments into the manifest.
               -->
-              <exclude>src/test/resources/projects/project-015/src/main/application/META-INF/MANIFEST.MF</exclude>
+              <exclude>
+                src/test/resources/projects/project-015/src/main/application/META-INF/MANIFEST.MF
+              </exclude>
               <exclude>src/test/resources/projects/project-016/src/main/ear/MANIFEST.MF</exclude>
               <!--
                 ! Added the following excludes cause they have been reported as wrong.
                 ! https://issues.apache.org/jira/browse/RAT-187
               -->
-              <exclude>src/test/resources/m2repo/eartest/har-sample-one/1.0/har-sample-one-1.0.har</exclude>
-              <exclude>src/test/resources/m2repo/eartest/sar-sample-one/1.0/sar-sample-one-1.0.sar</exclude>
+              <exclude>src/test/resources/m2repo/eartest/har-sample-one/1.0/har-sample-one-1.0.har
+              </exclude>
+              <exclude>src/test/resources/m2repo/eartest/sar-sample-one/1.0/sar-sample-one-1.0.sar
+              </exclude>
               <!--
                 ! DTDs from other sources - do not add our own license header.
               -->
@@ -241,8 +249,12 @@
               <!--
                 ! Within the checksum files no additional data is allowed
               -->
-              <exclude>src/test/resources/m2snapshots/eartest/jar-sample-one/1.0-SNAPSHOT/jar-sample-one-1.0-20150825.210557-91.jar.sha1</exclude>
-              <exclude>src/test/resources/m2snapshots/eartest/jar-sample-one/1.0-SNAPSHOT/jar-sample-one-1.0-20150825.210557-91.pom.sha1</exclude>
+              <exclude>
+                src/test/resources/m2snapshots/eartest/jar-sample-one/1.0-SNAPSHOT/jar-sample-one-1.0-20150825.210557-91.jar.sha1
+              </exclude>
+              <exclude>
+                src/test/resources/m2snapshots/eartest/jar-sample-one/1.0-SNAPSHOT/jar-sample-one-1.0-20150825.210557-91.pom.sha1
+              </exclude>
             </excludes>
           </configuration>
         </plugin>
@@ -258,7 +270,8 @@
         <configuration>
           <skip>true</skip>
         </configuration>
-      </plugin></plugins>
+      </plugin>
+    </plugins>
   </build>
 
   <profiles>
@@ -308,40 +321,20 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-invoker-plugin</artifactId>
             <configuration>
-              <localRepositoryPath>${project.build.directory}/invoker-repo</localRepositoryPath>
-              <extraArtifacts>
-                <extraArtifact>org.apache.maven.plugins:maven-war-plugin:2.1.1:jar</extraArtifact>
-                <extraArtifact>org.apache.maven.plugins:maven-compiler-plugin:2.5.1:jar</extraArtifact>
-                <extraArtifact>org.apache.maven.plugins:maven-ejb-plugin:2.3:jar</extraArtifact>
-              </extraArtifacts>
+              <skipInstallation>true</skipInstallation>
+              <skipInvocation>true</skipInvocation>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>com.soebes.itf.jupiter.extension</groupId>
+            <artifactId>itf-maven-plugin</artifactId>
+            <version>0.2.1-SNAPSHOT</version>
             <executions>
-              <!--
-               ! !!Hack!!
-               ! Currently needed to turn off running integration-test part
-               ! and keep only install goal of maven-invoker-plugin.
-               -->
               <execution>
-                <id>integration-test</id>
-                <phase>EMPTY</phase>
-              </execution>
-              <execution>
-                <id>verify</id>
-                <phase>EMPTY</phase>
-              </execution>
-              <execution>
-                <id>install-artifacts</id>
-<!--                <phase>EMPTY</phase> -->
+                <id>installing</id>
                 <goals>
                   <goal>install</goal>
                 </goals>
-                <configuration>
-                  <!--
-                   ! !!Hack!!
-                   ! This location is currently hard coded within the maven-it-extension
-                   -->
-                  <localRepositoryPath>${project.build.directory}/invoker-repo</localRepositoryPath>
-                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -374,38 +367,6 @@
               </execution>
             </executions>
           </plugin>
-<!--
-          <plugin>
-            <groupId>de.sormuras.junit</groupId>
-            <artifactId>junit-platform-maven-plugin</artifactId>
-            <version>1.0.0-M5</version>
-            <executions>
-              <execution>
-                <id>Launch JUnit Platform</id>
-                <phase>integration-test</phase>
-                <goals>
-                  <goal>launch</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-ngi-plugin</artifactId>
-					<version>0.1.0-SNAPSHOT</version>
-          <configuration>
-          </configuration>
-          <executions>
-						<execution>
-							<id>execution-first</id>
-              <goals>
-                <goal>install</goal>
-                <goal>integration-test</goal>
-              </goals>
-						</execution>
-					</executions>
-				</plugin>
--->
         </plugins>
       </build>
     </profile>
