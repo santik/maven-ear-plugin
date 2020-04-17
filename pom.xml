@@ -179,13 +179,13 @@
     <dependency>
       <groupId>com.soebes.itf.jupiter.extension</groupId>
       <artifactId>itf-jupiter-extension</artifactId>
-			<version>0.2.1-SNAPSHOT</version>
+			<version>0.3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.soebes.itf.jupiter.extension</groupId>
       <artifactId>itf-assertj</artifactId>
-			<version>0.2.1-SNAPSHOT</version>
+			<version>0.3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -328,7 +328,7 @@
           <plugin>
             <groupId>com.soebes.itf.jupiter.extension</groupId>
             <artifactId>itf-maven-plugin</artifactId>
-            <version>0.2.1-SNAPSHOT</version>
+						<version>0.3.0</version>
             <executions>
               <execution>
                 <id>installing</id>
