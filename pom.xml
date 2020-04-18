@@ -90,6 +90,7 @@
     <javaVersion>8</javaVersion>
     <surefire.version>2.22.1</surefire.version>
     <project.build.outputTimestamp>2020-04-07T21:04:00Z</project.build.outputTimestamp>
+    <itf.version>0.3.1-SNAPSHOT</itf.version>
   </properties>
 
   <dependencyManagement>
@@ -179,13 +180,13 @@
     <dependency>
       <groupId>com.soebes.itf.jupiter.extension</groupId>
       <artifactId>itf-jupiter-extension</artifactId>
-			<version>0.3.0</version>
+      <version>${itf.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.soebes.itf.jupiter.extension</groupId>
       <artifactId>itf-assertj</artifactId>
-			<version>0.3.0</version>
+      <version>${itf.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -328,7 +329,7 @@
           <plugin>
             <groupId>com.soebes.itf.jupiter.extension</groupId>
             <artifactId>itf-maven-plugin</artifactId>
-						<version>0.3.0</version>
+            <version>${itf.version}</version>
             <executions>
               <execution>
                 <id>installing</id>
