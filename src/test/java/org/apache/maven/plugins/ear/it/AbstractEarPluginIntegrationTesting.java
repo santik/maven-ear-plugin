@@ -61,7 +61,7 @@ public abstract class AbstractEarPluginIntegrationTesting
     /**
      * Test repository directory.
      */
-    protected File localRepositoryDir = new File( getBasedir().getAbsolutePath(), "target/test-classes/m2repo" );
+    protected File localRepositoryDir = new File( getBasedir().getAbsolutePath(), "target/test-classes/.predefined-repo" );
 
     protected File settingsFile = new File( getBasedir().getAbsolutePath(), "target/test-classes/settings.xml" );
 

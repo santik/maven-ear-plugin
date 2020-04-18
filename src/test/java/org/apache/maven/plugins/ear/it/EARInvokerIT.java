@@ -46,7 +46,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 @MavenIT
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName("EAR Plugin Integration tests")
-class EARIT
+class EARInvokerIT
 {
 
   @MavenTest

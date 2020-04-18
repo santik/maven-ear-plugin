@@ -44,7 +44,7 @@ public class EarMojoIntegrationTestings
     public void testProject001()
         throws Exception
     {
-        doTestProject( "project-001", new String[] { "eartest-ejb-sample-one-1.0.jar" } );
+        doTestProject( "project_001", new String[] { "eartest-ejb-sample-one-1.0.jar" } );
     }
 
     /**
@@ -54,7 +54,7 @@ public class EarMojoIntegrationTestings
     public void testProject002()
         throws Exception
     {
-        doTestProject( "project-002",
+        doTestProject( "project_002",
                        new String[] { "APP-INF/lib/eartest-ejb-sample-one-1.0.jar", "ejb-sample-two.jar" } );
     }
 
@@ -65,7 +65,7 @@ public class EarMojoIntegrationTestings
     public void testProject003()
         throws Exception
     {
-        doTestProject( "project-003", new String[] { "eartest-ejb-sample-one-1.0.jar",
+        doTestProject( "project_003", new String[] { "eartest-ejb-sample-one-1.0.jar",
             "APP-INF/lib/eartest-jar-sample-one-1.0.jar", "APP-INF/lib/eartest-jar-sample-two-1.0.jar" } );
     }
 
@@ -76,7 +76,7 @@ public class EarMojoIntegrationTestings
     public void testProject004()
         throws Exception
     {
-        doTestProject( "project-004", new String[] { "eartest-ejb-sample-one-1.0.jar", "eartest-jar-sample-one-1.0.jar",
+        doTestProject( "project_004", new String[] { "eartest-ejb-sample-one-1.0.jar", "eartest-jar-sample-one-1.0.jar",
             "APP-INF/lib/eartest-jar-sample-two-1.0.jar" } );
     }
 
@@ -87,7 +87,7 @@ public class EarMojoIntegrationTestings
     public void testProject005()
         throws Exception
     {
-        doTestProject( "project-005", new String[] { "eartest-ejb-sample-one-1.0.jar", "libs/another-name.jar" } );
+        doTestProject( "project_005", new String[] { "eartest-ejb-sample-one-1.0.jar", "libs/another-name.jar" } );
     }
 
     /**
@@ -97,7 +97,7 @@ public class EarMojoIntegrationTestings
     public void testProject006()
         throws Exception
     {
-        doTestProject( "project-006",
+        doTestProject( "project_006",
                        new String[] { "eartest-ejb-sample-one-1.0.jar", "eartest-jar-sample-two-1.0.jar" } );
     }
 
