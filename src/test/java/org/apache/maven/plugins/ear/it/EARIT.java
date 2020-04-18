@@ -51,14 +51,14 @@ class EARIT
 
   @MavenTest
   void basic( MavenExecutionResult result, MavenProjectResult project) {
-    assertThat(result).isSuccessful();
-    assertThat(project).hasTarget()
+    assertThat(result).isSuccessful().project()
+        .hasTarget()
         .withEarFile()
         .containsOnlyOnce("META-INF/application.xml", "META-INF/appserver-application.xml");
   }
 
   @MavenTest
-  void filenamemapping_usage_fail(MavenExecutionResult result, MavenProjectResult project) {
+  void filenamemapping_usage_fail(MavenExecutionResult result) {
     assertThat(result).isFailure();
     assertThat(result).log().buildFailure();
   }
@@ -77,42 +77,41 @@ Archive:  test-1.0.ear
   testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.properties   OK
  */
   @MavenTest
-  void jboss(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
-    assertThat(result).isSuccessful();
+  void jboss(MavenExecutionResult result, MavenLog log) {
     assertThat(log).isSuccessful();
-    assertThat(project).hasTarget()
+    assertThat(result).isSuccessful().project()
+        .hasTarget()
         .withEarFile()
         .containsOnlyOnce("META-INF/application.xml", "META-INF/appserver-application.xml", "META-INF/jboss-app.xml");
   }
 
   @MavenTest
-  void mear_243_skinny_wars_provided(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
-    assertThat(result).isSuccessful();
+  void mear_243_skinny_wars_provided(MavenExecutionResult result, MavenLog log) {
     assertThat(log).isSuccessful();
-    assertThat(project).hasModule("ear-module");
-    assertThat(project).hasModule("war-module");
+    assertThat(result).isSuccessful().project()
+      .hasModule("ear-module")
+      .hasModule("war-module");
   }
 
   @MavenTest(goals = {"clean", "package"})
-  void mear_198(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
-    assertThat(result).isSuccessful();
+  void mear_198(MavenExecutionResult result, MavenLog log) {
+    assertThat(result).isSuccessful().project().hasTarget();
     assertThat(log).isSuccessful();
-    assertThat(project).hasTarget();
   }
 
   @MavenTest
-  void packaging_excludes(MavenExecutionResult result, MavenProjectResult project) {
-    assertThat(result).isSuccessful();
-    assertThat(project).hasTarget()
+  void packaging_excludes(MavenExecutionResult result) {
+    assertThat(result).isSuccessful().project()
+        .hasTarget()
         .withEarFile()
         .doesNotContain("commons-lang-commons-lang-2.5.jar")
         .containsOnlyOnce("META-INF/application.xml", "META-INF/MANIFEST.MF");
   }
 
   @MavenTest
-  void packaging_includes(MavenExecutionResult result, MavenProjectResult project) {
-    assertThat(result).isSuccessful();
-    assertThat(project).hasTarget()
+  void packaging_includes(MavenExecutionResult result) {
+    assertThat(result).isSuccessful().project()
+        .hasTarget()
         .withEarFile()
         .doesNotContain("commons-io-1.4.jar")
         .containsOnlyOnce("commons-lang-commons-lang-2.5.jar", "META-INF/application.xml", "META-INF/MANIFEST.MF");
@@ -120,8 +119,7 @@ Archive:  test-1.0.ear
 
   @MavenTest
   @DisplayName("Filtering of a custom directory (likely wrong!)")
-  void resource_custom_directory(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
-    assertThat(result).isSuccessful();
+  void resource_custom_directory(MavenExecutionResult result, MavenLog log) {
     assertThat(log).isSuccessful();
     assertThat(result).project().hasTarget()
         .withEarFile()
