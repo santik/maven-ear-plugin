@@ -259,10 +259,6 @@ class EARProjectIT
     assertThat(result).isSuccessful().project().hasTarget().withEarFile();
   }
   @MavenTest
-  void project_052(MavenExecutionResult result) {
-    assertThat(result).isSuccessful().project().hasTarget().withEarFile();
-  }
-  @MavenTest
   void project_053(MavenExecutionResult result) {
     assertThat(result).isSuccessful().project().hasTarget().withEarFile();
   }
