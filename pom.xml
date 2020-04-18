@@ -303,7 +303,7 @@
           </testResource>
           <testResource>
             <directory>src/test/resources-its</directory>
-            <filtering>true</filtering>
+            <filtering>false</filtering>
           </testResource>
         </testResources>
         <pluginManagement>

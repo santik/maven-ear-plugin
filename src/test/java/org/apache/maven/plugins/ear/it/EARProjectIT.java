@@ -21,6 +21,7 @@ package org.apache.maven.plugins.ear.it;
 
 import com.soebes.itf.jupiter.extension.MavenIT;
 import com.soebes.itf.jupiter.extension.MavenPredefinedRepository;
+import com.soebes.itf.jupiter.extension.MavenRepository;
 import com.soebes.itf.jupiter.extension.MavenTest;
 import com.soebes.itf.jupiter.maven.MavenExecutionResult;
 import com.soebes.itf.jupiter.maven.MavenLog;
@@ -47,6 +48,7 @@ import static com.soebes.itf.extension.assertj.MavenITAssertions.assertThat;
 @MavenIT
 @DisplayName("EAR Project Integration tests.")
 @MavenPredefinedRepository
+@MavenRepository
 class EARProjectIT
 {
 
@@ -152,7 +154,7 @@ class EARProjectIT
   }
   @MavenTest
   void project_026(MavenExecutionResult result) {
-    assertThat(result).isSuccessful().project().hasTarget().withEarFile();
+    assertThat(result).isFailure();
   }
   @MavenTest
   void project_027(MavenExecutionResult result) {
