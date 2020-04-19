@@ -127,7 +127,6 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
-  @Disabled
   void same_artifactId(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
     assertThat(result).isSuccessful();
     assertThat(log).isSuccessful();
@@ -192,7 +191,6 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
-  @Disabled
   void skinny_wars_timestamp(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasModule("war-module");
