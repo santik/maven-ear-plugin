@@ -23,6 +23,7 @@ import static com.soebes.itf.extension.assertj.MavenITAssertions.assertThat;
 
 import com.soebes.itf.jupiter.extension.MavenIT;
 import com.soebes.itf.jupiter.extension.MavenOptions;
+import com.soebes.itf.jupiter.extension.MavenPredefinedRepository;
 import com.soebes.itf.jupiter.extension.MavenTest;
 import com.soebes.itf.jupiter.maven.MavenExecutionResult;
 import com.soebes.itf.jupiter.maven.MavenLog;
@@ -51,7 +52,7 @@ class EARInvokerIT
 {
 
   @MavenTest
-  void basic( MavenExecutionResult result, MavenProjectResult project) {
+  void basic( MavenExecutionResult result) {
     assertThat(result).isSuccessful().project()
         .hasTarget()
         .withEarFile()
@@ -78,8 +79,7 @@ Archive:  test-1.0.ear
   testing: META-INF/maven/org.apache.maven.its.ear.jboss/test/pom.properties   OK
  */
   @MavenTest
-  void jboss(MavenExecutionResult result, MavenLog log) {
-    assertThat(log).isSuccessful();
+  void jboss(MavenExecutionResult result) {
     assertThat(result).isSuccessful().project()
         .hasTarget()
         .withEarFile()
@@ -87,17 +87,15 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
-  void mear_243_skinny_wars_provided(MavenExecutionResult result, MavenLog log) {
-    assertThat(log).isSuccessful();
+  void mear_243_skinny_wars_provided(MavenExecutionResult result) {
     assertThat(result).isSuccessful().project()
       .hasModule("ear-module")
       .hasModule("war-module");
   }
 
   @MavenTest(goals = {"clean", "package"})
-  void mear_198(MavenExecutionResult result, MavenLog log) {
+  void mear_198(MavenExecutionResult result) {
     assertThat(result).isSuccessful().project().hasTarget();
-    assertThat(log).isSuccessful();
   }
 
   @MavenTest
@@ -120,34 +118,31 @@ Archive:  test-1.0.ear
 
   @MavenTest
   @DisplayName("Filtering of a custom directory (likely wrong!)")
-  void resource_custom_directory(MavenExecutionResult result, MavenLog log) {
-    assertThat(log).isSuccessful();
+  void resource_custom_directory(MavenExecutionResult result) {
     assertThat(result).project().hasTarget()
         .withEarFile()
         .containsOnlyOnce("META-INF/application.xml", "APP-INF/classes/foo.properties");
   }
 
   @MavenTest(options = {MavenOptions.NO_TRANSFER_PROGRESS, MavenOptions.DEBUG})
-  void same_artifactId(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
-    assertThat(result).isSuccessful();
-    assertThat(log).isSuccessful();
-    assertThat(project).hasModule("war-module");
-    assertThat(project).hasModule("ear-module");
+  void same_artifactId(MavenExecutionResult result) {
+    assertThat(result).isSuccessful().project()
+      .hasModule("war-module")
+      .hasModule("ear-module");
   }
 
   @MavenTest
-  void skinny_wars(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
-    assertThat(result).isSuccessful();
-    assertThat(log).isSuccessful();
-    assertThat(project).hasModule("war-module");
-    assertThat(project).hasModule("ear-module");
+  void skinny_wars(MavenExecutionResult result, MavenProjectResult project) {
+    assertThat(result).isSuccessful().project()
+      .hasModule("war-module")
+      .hasModule("ear-module");
   }
 
   @MavenTest
   void skinny_wars_filenamemapping_full(MavenExecutionResult result) {
-    assertThat(result).isSuccessful();
-    assertThat(result).project().hasModule("war-module");
-    assertThat(result).project().hasModule("ear-module");
+    assertThat(result).isSuccessful().project()
+      .hasModule("war-module")
+      .hasModule("ear-module");
     //    //FIXME: The following checking is not correct:
     //    //File jarFile = new File( basedir, "ear-module/target/ear-module-1.0/war-module.war" );
     //    assertThat(result).project()
@@ -185,13 +180,14 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
-  void skinny_wars_javaee5(MavenExecutionResult result, MavenProjectResult project) {
-    assertThat(result).isSuccessful();
-    assertThat(project).hasModule("war-module");
-    assertThat(project).hasModule("ear-module");
+  void skinny_wars_javaee5(MavenExecutionResult result) {
+    assertThat(result).isSuccessful().project()
+      .hasModule("war-module")
+      .hasModule("ear-module");
   }
 
   @MavenTest
+  @MavenPredefinedRepository
   void skinny_wars_timestamp(MavenExecutionResult result, MavenProjectResult project) {
     assertThat(result).isSuccessful();
     assertThat(project).hasModule("war-module");
@@ -199,10 +195,9 @@ Archive:  test-1.0.ear
   }
 
   @MavenTest
-  void transitive_excludes(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
-    assertThat(result).isSuccessful();
-    assertThat(log).isSuccessful();
-    assertThat(project).hasTarget()
+  void transitive_excludes(MavenExecutionResult result) {
+    assertThat(result).isSuccessful().project()
+        .hasTarget()
         .withEarFile()
         .containsOnlyOnce("org.apache.maven-maven-core-3.0.jar", "META-INF/application.xml");
   }
