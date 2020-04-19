@@ -228,9 +228,9 @@
                 ! The manifest specification does not describe any method for writing comments into the manifest.
               -->
               <exclude>
-                src/test/resources/projects/project-015/src/main/application/META-INF/MANIFEST.MF
+                src/test/resources-its/org/apache/maven/plugins/ear/it/EARProjectIT/project_015/src/main/application/META-INF/MANIFEST.MF
               </exclude>
-              <exclude>src/test/resources/projects/project-016/src/main/ear/MANIFEST.MF</exclude>
+              <exclude>src/test/resources-its/org/apache/maven/plugins/ear/it/EARProjectIT/project_016/src/main/ear/MANIFEST.MF</exclude>
               <!--
                 ! Added the following excludes cause they have been reported as wrong.
                 ! https://issues.apache.org/jira/browse/RAT-187
