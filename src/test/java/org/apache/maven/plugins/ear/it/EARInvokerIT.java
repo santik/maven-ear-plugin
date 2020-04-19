@@ -22,6 +22,7 @@ package org.apache.maven.plugins.ear.it;
 import static com.soebes.itf.extension.assertj.MavenITAssertions.assertThat;
 
 import com.soebes.itf.jupiter.extension.MavenIT;
+import com.soebes.itf.jupiter.extension.MavenOptions;
 import com.soebes.itf.jupiter.extension.MavenTest;
 import com.soebes.itf.jupiter.maven.MavenExecutionResult;
 import com.soebes.itf.jupiter.maven.MavenLog;
@@ -126,7 +127,7 @@ Archive:  test-1.0.ear
         .containsOnlyOnce("META-INF/application.xml", "APP-INF/classes/foo.properties");
   }
 
-  @MavenTest
+  @MavenTest(options = {MavenOptions.NO_TRANSFER_PROGRESS, MavenOptions.DEBUG})
   void same_artifactId(MavenExecutionResult result, MavenProjectResult project, MavenLog log) {
     assertThat(result).isSuccessful();
     assertThat(log).isSuccessful();

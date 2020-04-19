@@ -90,7 +90,7 @@
     <javaVersion>8</javaVersion>
     <surefire.version>2.22.1</surefire.version>
     <project.build.outputTimestamp>2020-04-07T21:04:00Z</project.build.outputTimestamp>
-    <itf.version>0.3.1-SNAPSHOT</itf.version>
+    <itf.version>0.4.0</itf.version>
   </properties>
 
   <dependencyManagement>
@@ -98,7 +98,7 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.6.1</version>
+        <version>5.6.2</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -352,12 +352,6 @@
                 <maven.version>${maven.version}</maven.version>
                 <maven.home>${maven.home}</maven.home>
               </systemProperties>
-              <properties>
-                <configurationParameters>
-                  junit.jupiter.execution.parallel.enabled = true
-                  junit.jupiter.execution.parallel.mode.default = concurrent
-                </configurationParameters>
-              </properties>
             </configuration>
             <executions>
               <execution>
