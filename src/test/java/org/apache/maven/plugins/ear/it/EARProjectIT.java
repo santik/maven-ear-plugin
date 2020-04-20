@@ -128,7 +128,7 @@ class EARProjectIT {
 
   @MavenTest
   void project_018(MavenExecutionResult result) {
-    assertThat(result).isSuccessful().project().hasTarget().withEarFile();
+    assertThat(result).isSuccessful().project().hasTarget().withFile("my-custom-file.ear");
   }
 
   @MavenTest
@@ -148,7 +148,8 @@ class EARProjectIT {
 
   @MavenTest
   void project_022(MavenExecutionResult result) {
-    assertThat(result).isSuccessful().project().hasTarget().withEarFile();
+    //TODO: Need to make it possible to use a classifier
+    assertThat(result).isSuccessful().project().hasTarget().withFile("maven-ear-plugin-test-project-022-99.0-myclassifier.ear");
   }
 
   @MavenTest
