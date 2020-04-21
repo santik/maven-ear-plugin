@@ -38,6 +38,7 @@ import static com.soebes.itf.extension.assertj.MavenITAssertions.assertThat;
 @MavenIT
 @DisplayName("EAR Project Integration tests.")
 @MavenPredefinedRepository
+@MavenRepository
 class EARProjectIT {
 
   @MavenTest
